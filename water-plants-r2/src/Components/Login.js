@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import {axiosWithAuth} from "../Utilities-auth/Auth"
+import { axiosWithAuth } from "../Utilities-auth/Auth";
 
 class Login extends React.Component {
   state = {
@@ -9,6 +9,7 @@ class Login extends React.Component {
       password: ""
     }
   };
+  
   handleChange = e => {
     // <---- handle change function
     this.setState({
@@ -19,34 +20,26 @@ class Login extends React.Component {
     });
   };
 
-  getData = () => {
-    axiosWithAuth()
-      .get("https://build-week-backend-test.herokuapp.com")
-      .then(res => {
-        console.log(res);
-        
-      })
-      .catch(err => console.log(err));
-  };
+  
 
-  
-  
   login = e => {
     e.preventDefault();
 
-    axios
+    axiosWithAuth()
       .post(
-        "https://build-week-backend-test.herokuapp.com/",
+        "/auth/login",
         this.state.credentials
       ) // need backend endpoint here as well.
       .then(res => {
-        localStorage.setItem("token", res.data.payload);
-        this.props.history.push("/protected");
+          console.log(res)
+        localStorage.setItem("token", res.data.token);
+         this.props.history.push("/plants");
       })
       .catch(err => console.log(err));
   };
 
   render() {
+    
     return (
       <div>
         <h1>Sign In</h1>
@@ -58,14 +51,14 @@ class Login extends React.Component {
             value={this.state.credentials.username}
             onChange={this.handleChange} // <---- Handle function goes here//
           />
-          /> Password:{" "}
+          Password:{" "}
           <input
-            type="text"
+            type="password"
             name="password"
             value={this.state.credentials.password}
             onChange={this.handleChange}
           />
-          <button onClick={this.getData()}>Log In</button>
+          <button>Log In</button>
         </form>
       </div>
     );
