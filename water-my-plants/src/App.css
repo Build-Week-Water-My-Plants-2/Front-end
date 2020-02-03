@@ -18,9 +18,9 @@ body {
 .App {
   display: flex;
   justify-content: flex-end;
-  padding: 12%;
-  align-content: center;
-  height: 100%;
+  padding: 11%;
+  align-items: center;
+  height: 85%;
 }
 
 .fa-seedling {
@@ -28,27 +28,17 @@ body {
   color: green;
   position: absolute;
   top: 20%;
-  left: 18%;
+  left: 19%;
 }
 
-.fa-user {
-  position: absolute;
-  color: green;
-  font-size: 2rem;
-  top: 8%;
-  left: 4%;
-  z-index: 2;
-  border-right: 1px solid green;
-  padding-right: 4%;
-}
-
+.fa-user,
 .fa-unlock-alt {
   position: absolute;
   color: green;
   font-size: 2rem;
-  top: 8%;
+  top: 10%;
   left: 4%;
-  border-right: 1px solid green;
-  padding-right: 4%;
   z-index: 2;
+  border-right: 1px solid lightgray;
+  padding-right: 4%;
 }
