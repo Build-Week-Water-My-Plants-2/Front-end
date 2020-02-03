@@ -49,12 +49,16 @@ const NewUser = ({ values, errors, touched, status }) => {
                         <StyledEntry>Enter Password: <Field type="password" name="password" placeholder="●●●●●●●●" /></StyledEntry>
                         {touched.password && errors.password && (<p className="error">{errors.password}</p>)}
                     </div>
+                    <div>
+                        <StyledEntry>Enter Phone Number: <Field type="phone" name="phone" placeholder="(555)-555-555" /></StyledEntry>
+                        {touched.phone && errors.phone && (<p className="error">{errors.phone}</p>)}
+                    </div>
                     <StyledEntry>Agree to Terms of Services: <Field type="checkbox" name="terms" checked={values.terms} /></StyledEntry>
                     {touched.terms && errors.terms && (<p className="error">{errors.terms}</p>)}
                     <button type="submit">Submit</button>
                 </StyledForm>
             </Form>
-            {/* Print user info after submission */}
+            {}
             {user.map(person => (
                 <div>
                     <StyledResults><ul key={person.id}>
@@ -69,11 +73,12 @@ const NewUser = ({ values, errors, touched, status }) => {
     )
 }
 const FormikNewUser = withFormik({
-    mapPropsToValues({ name, email, password, terms }) {
+    mapPropsToValues({ name, email, password, phone,terms }) {
         return {
             name: name || "",
             email: email || "",
             password: password || "",
+            phone: phone || "",
             terms: terms || false
         };
     },
@@ -82,12 +87,13 @@ const FormikNewUser = withFormik({
         name: yup.string().min(2, "Name must have more than one character.").required("Required field."),
         email: yup.string().email("Email not valid.").required("Required field."),
         password: yup.string().min(6, "Password must have at least 6 characters.").required("Required field."),
+        phone: yup.string().min( "Please enter your phone number here.").required("Required field."),
         terms: yup.boolean().oneOf([true], "Must accept Terms of Service.").required()
     }),
 
     handleSubmit(values, { setStatus, resetForm }) {
         axios
-            .post("https://reqres.in/api/users/", values)
+            .post("https://water-my-plants-2.herokuapp.com/api/auth", values)
             .then(response => {
                 setStatus(response.data);
                 resetForm();
