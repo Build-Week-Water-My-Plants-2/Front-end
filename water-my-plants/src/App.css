@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+}
+
+#root,
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 62.5;
+  line-height: 1;
+}
+
+.App {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12%;
+  align-content: center;
+  height: 100%;
+}
+
+.fa-seedling {
+  font-size: 4rem;
+  color: green;
+  position: absolute;
+  top: 20%;
+  left: 18%;
+}
+
+.fa-user {
+  position: absolute;
+  color: green;
+  font-size: 2rem;
+  top: 8%;
+  left: 4%;
+  z-index: 2;
+  border-right: 1px solid green;
+  padding-right: 4%;
+}
+
+.fa-unlock-alt {
+  position: absolute;
+  color: green;
+  font-size: 2rem;
+  top: 8%;
+  left: 4%;
+  border-right: 1px solid green;
+  padding-right: 4%;
+  z-index: 2;
+}
