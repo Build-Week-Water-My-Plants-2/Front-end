@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { withFormik, getIn } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSeedling,
   faUser,
-  faUnlockAlt
+  faUnlockAlt,
+  faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
-
 import {
   LogForm,
   Input,
@@ -32,13 +32,8 @@ function getStyles(errors, fieldName) {
   }
 }
 
-function LoginForm({ errors, touched, status, isSubmitting }) {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    console.log("status has changed", status);
-    status && setUsers((users) => [...users, status]);
-  }, [status]);
+function LoginForm({ values, errors, touched, status, isSubmitting }) {
+  const [toggleShow, setToggleShow] = useState(values.password);
 
   return (
     <UserForm>
@@ -47,23 +42,23 @@ function LoginForm({ errors, touched, status, isSubmitting }) {
       </IconDiv>
       <Title>Login</Title>
       <LogForm>
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="username">Username</Label>
         <EmailWrapper>
           <FontAwesomeIcon icon={faUser} />
           <Input
-            id="email"
-            type="email"
-            name="email"
-            placeholder="Email..."
-            style={getStyles(errors, "email")}
+            id="username"
+            type="text"
+            name="username"
+            placeholder="Username..."
+            style={getStyles(errors, "username")}
           />
         </EmailWrapper>
-        {touched.email && errors.email && (
+        {touched.username && errors.username && (
           <p
             className="errors"
             style={{ fontSize: ".75rem", color: "red", marginBottom: "0" }}
           >
-            {errors.email}{" "}
+            {errors.username}{" "}
           </p>
         )}
 
@@ -72,11 +67,15 @@ function LoginForm({ errors, touched, status, isSubmitting }) {
           <FontAwesomeIcon icon={faUnlockAlt} />
           <Input
             id="password"
-            type="password"
+            type={toggleShow ? "text" : "password"}
             name="password"
             autoComplete="false"
             placeholder="Password..."
             style={getStyles(errors, "password")}
+          />
+          <FontAwesomeIcon
+            onClick={() => setToggleShow(!toggleShow)}
+            icon={faEyeSlash}
           />
         </PasswordWrapper>
         {touched.password && errors.password && (
@@ -88,44 +87,42 @@ function LoginForm({ errors, touched, status, isSubmitting }) {
         <Button type="submit" disabled={isSubmitting}>
           Log In
         </Button>
+
         <MemberLink>
           <Title2>Not a member?</Title2>
-          <Anchor to=" https://reqres.in/api/users/">Sign up</Anchor>
+          <Anchor to="/register">Sign up</Anchor>
         </MemberLink>
       </LogForm>
-
-      {users.map((user) => (
-        <ul key={user.id}>
-          <li>Email: {user.email} </li>
-          <li>Password: {user.password} </li>
-        </ul>
-      ))}
     </UserForm>
   );
 }
 
 const FormikUserForm = withFormik({
-  mapPropsToValues({ email, password }) {
+  mapPropsToValues({ email, password, username }) {
     return {
-      email: email || "",
+      username: username || "",
       password: password || ""
     };
   },
   validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email")
-      .required("email required"),
+    username: Yup.string()
+      .required("username required")
+      .min(3, "username must be at least 3 characters"),
+
     password: Yup.string()
       .min(7, "password must be at least 7 characters")
       .required("password required")
   }),
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { setStatus, resetForm, setSubmitting }) {
     console.log("submitting", values);
+
     axios
-      .post(" https://reqres.in/api/users/", values)
+      .post("https://water-my-plants-2.herokuapp.com/api/auth/login", values)
       .then((res) => {
         console.log("success", res);
-        setStatus(res.data);
+        const login = res.data;
+        setStatus(login);
+        setSubmitting(false);
         resetForm();
       })
       .catch((err) => {

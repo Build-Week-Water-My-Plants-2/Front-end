@@ -95,10 +95,6 @@ export const PasswordWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-// export const Check = styled.imput`
-//   justify-self: center;
-//   align-self: center;
-// `;
 
 export const MemberLink = styled.div`
   display: flex;
