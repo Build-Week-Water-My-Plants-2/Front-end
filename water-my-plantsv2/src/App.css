@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+}
+
+#root,
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 62.5;
+  line-height: 1;
+}
+
+.App {
+  display: flex;
+  justify-content: flex-end;
+  padding: 11%;
+  align-items: center;
+  height: 85%;
+}
+
+.fa-seedling {
+  font-size: 4rem;
+  color: green;
+  position: absolute;
+  top: 20%;
+  left: 25%;
+}
+
+.fa-user,
+.fa-unlock-alt {
+  position: absolute;
+  color: green;
+  font-size: 2rem;
+  top: 10%;
+  left: 4%;
+  z-index: 2;
+  border-right: 1px solid lightgray;
+  padding-right: 4%;
+}
+
+.fa-eye-slash {
+  position: absolute;
+  color: green;
+  font-size: 1rem;
+  top: 29%;
+  right: 10%;
+}
