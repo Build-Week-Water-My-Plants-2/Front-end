@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {axiosWithAuth} from "./Utilities-auth/Auth"
 import logo from './logo.svg';
 import './App.css';
 import PrivateRoute from './Utilities-auth/PrivateRoute'
@@ -9,7 +10,21 @@ import PlantPage from "./Components/PlantPage"
 import Plants from './Components/Plants';
 import PlantForm from './Components/PlantForm'
 import PlantCard from './Components/PlantCard'
+// import updatePlantForm from './Components/updatePlantForm'
 function App() {
+  
+  useEffect(() => {
+    axiosWithAuth()
+    .get("/api/users")
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  },[])
+
+
   return (
     <Router>
       <div className="App">
@@ -25,6 +40,7 @@ function App() {
           <PrivateRoute exact path="/plants" component={Plants}/>
           <PrivateRoute exact path="/plantform" component={PlantForm}/>
           <PrivateRoute exact path="/plantcard" component={PlantCard}/>
+          {/* <PrivateRoute exact path="/plantupdate" component={updatePlantForm} /> */}
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register}/>
           {/* <Route  component={Login} /> */}

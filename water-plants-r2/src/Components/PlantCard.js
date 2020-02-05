@@ -61,7 +61,7 @@ const PlantCard = props => {
           </CardSubtitle>
           <CardText>Notes</CardText>
 
-          <Button>Edit</Button>
+          <Button >Edit</Button>
           <Button onClick={deletePlant}>Delete</Button>
         </CardBody>
       </Card>
