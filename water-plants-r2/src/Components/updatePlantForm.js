@@ -12,18 +12,18 @@ import { axiosWithAuth } from "../Utilities-auth/Auth";
 const PlantForm = () => {
 
 
-  updatePlant = e => {
-    // UPDATE AXIOS
-    e.preventDefault();
+  // updatePlant = e => {
+  //   // UPDATE AXIOS
+  //   e.preventDefault();
 
-    axiosWithAuth()
-      .put(`/plants/${props.plants.id}`)
-      .then(res => {
-        localStorage.setItem("token", res.data.);
-        this.props.history.push("/protected");
-      })
-      .catch(err => console.log(err));
-  };
+  //   axiosWithAuth()
+  //     .put(`/plants/${props.plants.id}`)
+  //     .then(res => {
+  //       localStorage.setItem("token", res.data.);
+  //       this.props.history.push("/protected");
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   
     return (

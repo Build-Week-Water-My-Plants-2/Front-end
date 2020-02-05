@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import PrivateRoute from './Utilities-auth/PrivateRoute'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import Login from "./Components/Login"
+import Login2 from "./Components/Login2"
 import Register from "./Components/Register"
 import PlantPage from "./Components/PlantPage"
 import Plants from './Components/Plants';
@@ -13,20 +13,15 @@ import PlantCard from './Components/PlantCard'
 // import updatePlantForm from './Components/updatePlantForm'
 function App() {
   
-  useEffect(() => {
-    axiosWithAuth()
-    .get("/api/users")
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  },[])
+  
 
 
   return (
     <Router>
+      <div>
+          <Route path="/login" component={Login2} />
+
+      </div>
       <div className="App">
           <nav>
             <Link to="/login">Login </Link>
@@ -41,7 +36,6 @@ function App() {
           <PrivateRoute exact path="/plantform" component={PlantForm}/>
           <PrivateRoute exact path="/plantcard" component={PlantCard}/>
           {/* <PrivateRoute exact path="/plantupdate" component={updatePlantForm} /> */}
-          <Route path="/login" component={Login} />
           <Route path="/register" component={Register}/>
           {/* <Route  component={Login} /> */}
         </Switch>

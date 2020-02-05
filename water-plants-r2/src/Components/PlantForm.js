@@ -23,7 +23,7 @@ const PlantForm = (props) => {
      
 
       axiosWithAuth()
-        .post(`user/${id}/plants`, newPlant)
+        .post(`user/1/plants`, newPlant)
         .then(res => {
           // console.log(res);
           setNewPlant(res.data);

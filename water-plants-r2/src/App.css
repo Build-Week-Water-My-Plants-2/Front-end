@@ -1,42 +1,58 @@
+* {
+  box-sizing: border-box;
+}
+#root,
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 62.5;
+  line-height: 1;
+}
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* padding: 11%; */
+  align-items: center;
+  height: 100vh;
 }
-
-.App-link {
-  color: #61dafb;
+.fa-seedling {
+  font-size: 4rem;
+  color: green;
+  position: absolute;
+  top: 20%;
+  left: 6%;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.fa-user,
+.fa-unlock-alt {
+  position: absolute;
+  color: green;
+  font-size: 2rem;
+  top: 10%;
+  left: 4%;
+  z-index: 2;
+  border-right: 1px solid lightgray;
+  padding-right: 4%;
 }
-/* .card-img{
-  width: 10%;
-  height: 10%;
-} */
+.fa-eye-slash {
+  position: absolute;
+  color: green;
+  font-size: 1rem;
+  top: 29%;
+  right: 10%;
+}
+.plant-page {
+  width: 150%;
+  height: 85%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: space-evenly;
+}
+.plant-header {
+  color: rgb(44, 179, 44);
+  width: 5%;
+  padding-right: 7%;
+}
