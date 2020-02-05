@@ -1,15 +1,14 @@
 import React from "react";
-import axios from "axios";
+
 import { axiosWithAuth } from "../Utilities-auth/Auth";
 
 class Register extends React.Component {
   state = {
     newUser: {
-      id: "",
       username: "",
       password: "",
       email: "",
-      telephone: ""
+      phone_number: ""
     }
   };
   handleChange = e => {
@@ -22,14 +21,13 @@ class Register extends React.Component {
     });
   };
 
- 
   Register = e => {
     e.preventDefault();
 
     axiosWithAuth()
-      .post("api/auth/register", this.state.newUser) 
+      .post("/auth/register", this.state.newUser)
       .then(res => {
-        localStorage.setItem("token", res.data);
+        localStorage.setItem("token", res.data.token);
         // this.props.history.push("/protected");
       })
       .catch(err => console.log(err));
@@ -47,6 +45,13 @@ class Register extends React.Component {
             value={this.state.newUser.username}
             onChange={this.handleChange}
           />
+          Password:
+          <input
+            type="password"
+            name="password"
+            value={this.state.newUser.password}
+            onChange={this.handleChange}
+          />
           Email:
           <input
             type="text"
@@ -57,15 +62,8 @@ class Register extends React.Component {
           Phone Number:
           <input
             type="text"
-            name="telephone"
-            value={this.state.newUser.telephone}
-            onChange={this.handleChange}
-          />
-          Password:
-          <input
-            type="text"
-            name="password"
-            value={this.state.newUser.password}
+            name="phone_number"
+            value={this.state.newUser.phone_number}
             onChange={this.handleChange}
           />
           <button>Register</button>

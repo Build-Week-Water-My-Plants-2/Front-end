@@ -7,7 +7,8 @@ import Login from "./Components/Login"
 import Register from "./Components/Register"
 import PlantPage from "./Components/PlantPage"
 import Plants from './Components/Plants';
-
+import PlantForm from './Components/PlantForm'
+import PlantCard from './Components/PlantCard'
 function App() {
   return (
     <Router>
@@ -15,15 +16,18 @@ function App() {
           <nav>
             <Link to="/login">Login </Link>
             <Link to="/register">SignUp</Link>
-            <Link to="/plants"> Protected Page</Link>
-
+            <Link to="/plantcard">Plants</Link>
+            <Link to="/plants"> My Plants</Link>
+            <Link to="/plantform">Add New Plant</Link>
           </nav>
         <Switch>
           <PrivateRoute exact path="/protected" component={PlantPage} />
           <PrivateRoute exact path="/plants" component={Plants}/>
+          <PrivateRoute exact path="/plantform" component={PlantForm}/>
+          <PrivateRoute exact path="/plantcard" component={PlantCard}/>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register}/>
-          <Route  component={Login} />
+          {/* <Route  component={Login} /> */}
         </Switch>
       </div>
     </Router>
