@@ -7,7 +7,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  padding: 0;
+  padding-top: 20px;
 }
 
 body {
@@ -20,7 +20,8 @@ body {
   justify-content: flex-end;
   padding: 11%;
   align-items: center;
-  height: 85%;
+  height: 100vh;
+  padding-top: 10%;
 }
 
 .fa-seedling {
@@ -28,11 +29,13 @@ body {
   color: green;
   position: absolute;
   top: 20%;
-  left: 25%;
+  left: 23%;
 }
 
 .fa-user,
-.fa-unlock-alt {
+.fa-unlock-alt,
+.fa-phone,
+.fa-envelope-square {
   position: absolute;
   color: green;
   font-size: 2rem;
@@ -48,5 +51,14 @@ body {
   color: green;
   font-size: 1rem;
   top: 29%;
-  right: 10%;
+  right: 4%;
+}
+
+.plant-page {
+  width: 150%;
+  height: 85%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: space-evenly;
 }

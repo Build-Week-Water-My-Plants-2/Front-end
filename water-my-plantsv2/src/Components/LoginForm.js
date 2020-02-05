@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { withFormik, getIn } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import axiosWithAuth from "../Utils/axiosAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSeedling,
@@ -23,6 +23,7 @@ import {
   MemberLink,
   Anchor
 } from "./LoginStyles";
+import { withRouter } from "react-router-dom";
 
 function getStyles(errors, fieldName) {
   if (getIn(errors, fieldName)) {
@@ -32,7 +33,7 @@ function getStyles(errors, fieldName) {
   }
 }
 
-function LoginForm({ values, errors, touched, status, isSubmitting }) {
+function LoginForm({ values, errors, touched, isSubmitting }) {
   const [toggleShow, setToggleShow] = useState(values.password);
 
   return (
@@ -90,45 +91,46 @@ function LoginForm({ values, errors, touched, status, isSubmitting }) {
 
         <MemberLink>
           <Title2>Not a member?</Title2>
-          <Anchor to="/register">Sign up</Anchor>
+          <Anchor to="/signup">Sign up</Anchor>
         </MemberLink>
       </LogForm>
     </UserForm>
   );
 }
 
-const FormikUserForm = withFormik({
-  mapPropsToValues({ email, password, username }) {
-    return {
-      username: username || "",
-      password: password || ""
-    };
-  },
-  validationSchema: Yup.object().shape({
-    username: Yup.string()
-      .required("username required")
-      .min(3, "username must be at least 3 characters"),
+const FormikUserForm = withRouter(
+  withFormik({
+    mapPropsToValues({ email, password, username }) {
+      return {
+        username: username || "",
+        password: password || ""
+      };
+    },
+    validationSchema: Yup.object().shape({
+      username: Yup.string()
+        .required("username required")
+        .min(3, "username must be at least 3 characters"),
 
-    password: Yup.string()
-      .min(7, "password must be at least 7 characters")
-      .required("password required")
-  }),
-  handleSubmit(values, { setStatus, resetForm, setSubmitting }) {
-    console.log("submitting", values);
+      password: Yup.string()
+        .min(7, "password must be at least 7 characters")
+        .required("password required")
+    }),
+    handleSubmit(values, { props, setStatus, resetForm, setSubmitting }) {
+      console.log("submitting", values);
 
-    axios
-      .post("https://water-my-plants-2.herokuapp.com/api/auth/login", values)
-      .then((res) => {
-        console.log("success", res);
-        const login = res.data;
-        setStatus(login);
-        setSubmitting(false);
-        resetForm();
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  }
-})(LoginForm);
-
+      axiosWithAuth()
+        .post("/auth/login", values)
+        .then((res) => {
+          console.log("success", res);
+          localStorage.setItem("token", res.data.token);
+          const login = res.data;
+          setStatus(login);
+          props.history.replace("/plants");
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    }
+  })(LoginForm)
+);
 export default FormikUserForm;

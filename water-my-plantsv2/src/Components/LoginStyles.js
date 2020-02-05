@@ -53,7 +53,7 @@ export const Button = styled.button`
 export const UserForm = styled.div`
   box-sizing: border-box;
   background-color: rgba(255, 255, 255);
-  height: 465px;
+  height: 485px;
   padding: 5% 6%;
   width: 40%;
   border-radius: 5px;
