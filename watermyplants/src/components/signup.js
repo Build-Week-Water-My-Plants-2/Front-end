@@ -2,26 +2,8 @@ import React, {useState, useEffect} from "react";
 import { withFormik, Form, Field} from "formik";
 import axios from "axios";
 import * as yup from "yup";
-import styled from "styled-components";
+import {StyledForm, Button, StyledEntry, StyledResults,} from './signupstyle'
 
-const StyledForm = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-    margin: auto;
-    margin-top: 20%;
-    background-color: whitesmoke;
-    border: 2px dashed orange;
-`;
-const StyledEntry = styled.label`
-    color: darkorange;
-`;
-const StyledResults = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-`;
 
 const NewUser = ({ values, errors, touched, status }) => {
 
@@ -38,24 +20,22 @@ const NewUser = ({ values, errors, touched, status }) => {
             <Form className='FormMASTER'>
                 <StyledForm className='Form'>
                     <div>
-                        <StyledEntry>Enter Name: <Field type="text" name="name" placeholder="Name" /></StyledEntry>
+                        <StyledEntry>Enter Name <Field type="text" name="name" placeholder="Name" /></StyledEntry>
                         {touched.name && errors.name && (<p className="error">{errors.name}</p>)}
                     </div>
                     <div>
-                        <StyledEntry>Enter Email: <Field type="email" name="email" placeholder="Email" /></StyledEntry>
+                        <StyledEntry>Enter Email <Field type="email" name="email" placeholder="Email" /></StyledEntry>
                         {touched.email && errors.email && (<p className="error">{errors.email}</p>)}
                     </div>
                     <div>
-                        <StyledEntry>Enter Password: <Field type="password" name="password" placeholder="●●●●●●●●" /></StyledEntry>
+                        <StyledEntry>Enter Password <Field type="password" name="password" placeholder="●●●●●●●●" /></StyledEntry>
                         {touched.password && errors.password && (<p className="error">{errors.password}</p>)}
                     </div>
                     <div>
-                        <StyledEntry>Enter Phone Number: <Field type="phone" name="phone" placeholder="(555)-555-555" /></StyledEntry>
+                        <StyledEntry>Enter Phone # <Field type="phone" name="phone" placeholder="(555)-555-555" /></StyledEntry>
                         {touched.phone && errors.phone && (<p className="error">{errors.phone}</p>)}
                     </div>
-                    <StyledEntry>Agree to Terms of Services: <Field type="checkbox" name="terms" checked={values.terms} /></StyledEntry>
-                    {touched.terms && errors.terms && (<p className="error">{errors.terms}</p>)}
-                    <button type="submit">Submit</button>
+                    <Button type="submit">Submit</Button>
                 </StyledForm>
             </Form>
             {}
@@ -79,7 +59,6 @@ const FormikNewUser = withFormik({
             email: email || "",
             password: password || "",
             phone: phone || "",
-            terms: terms || false
         };
     },
 
@@ -88,7 +67,6 @@ const FormikNewUser = withFormik({
         email: yup.string().email("Email not valid.").required("Required field."),
         password: yup.string().min(6, "Password must have at least 6 characters.").required("Required field."),
         phone: yup.string().min( "Please enter your phone number here.").required("Required field."),
-        terms: yup.boolean().oneOf([true], "Must accept Terms of Service.").required()
     }),
 
     handleSubmit(values, { setStatus, resetForm }) {
