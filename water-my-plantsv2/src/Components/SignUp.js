@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { withFormik } from "formik";
-// import axios from "axios";
+import axios from "axios";
 import * as yup from "yup";
-import { Button, StyledResults } from "./SignUpStyles";
+import { Button } from "./SignUpStyles";
 import {
   LogForm,
   UserForm,
@@ -23,14 +23,7 @@ import {
   faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
 
-const NewUser = ({ values, errors, touched, status }) => {
-  const [user, setUser] = useState([]);
-  useEffect(() => {
-    if (status) {
-      setUser([...user, status]);
-    }
-  }, [user, status]);
-
+const NewUser = ({ values, errors, touched }) => {
   const [toggleShow, setToggleShow] = useState(values.password);
 
   return (
@@ -43,14 +36,14 @@ const NewUser = ({ values, errors, touched, status }) => {
         <Label htmlFor="name">Enter Name</Label>
         <EmailWrapper>
           <FontAwesomeIcon icon={faUser} />
-          <Input id="name" type="text" name="name" placeholder="name" />
+          <Input id="name" type="text" name="username" placeholder="name" />
         </EmailWrapper>
-        {touched.name && errors.name && (
+        {touched.username && errors.username && (
           <p
             className="error"
             style={{ fontSize: ".75rem", color: "red", marginBottom: "0" }}
           >
-            {errors.name}
+            {errors.username}
           </p>
         )}
 
@@ -95,44 +88,38 @@ const NewUser = ({ values, errors, touched, status }) => {
         <Label htmlFor="phone">Enter Phone #</Label>
         <EmailWrapper>
           <FontAwesomeIcon icon={faPhone} />
-          <Input type="phone" name="phone" placeholder="(555)-555-555" />
+          <Input
+            id="phone"
+            type="tel"
+            name="phone_number"
+            placeholder="(555)-555-555"
+          />
         </EmailWrapper>
-        {touched.phone && errors.phone && (
+        {touched.phone_number && errors.phone_number && (
           <p
             className="error"
             style={{ fontSize: ".75rem", color: "red", marginBottom: "0" }}
           >
-            {errors.phone}
+            {errors.phone_number}
           </p>
         )}
 
         <Button type="submit">Submit</Button>
       </LogForm>
-      {}
-      {user.map((person) => (
-        <div>
-          <StyledResults>
-            <ul key={person.id}>
-              <div>Name: {person.name}</div>
-              <div>Email: {person.email}</div>
-            </ul>
-          </StyledResults>
-        </div>
-      ))}
     </UserForm>
   );
 };
 const FormikNewUser = withFormik({
-  mapPropsToValues({ name, email, password, phone, terms }) {
+  mapPropsToValues({ username, email, password, phone_number }) {
     return {
-      name: name || "",
+      username: username || "",
       email: email || "",
       password: password || "",
-      phone: phone || ""
+      phone_number: phone_number || ""
     };
   },
   validationSchema: yup.object().shape({
-    name: yup
+    username: yup
       .string()
       .min(2, "Name must have more than one character.")
       .required("Required field."),
@@ -144,20 +131,20 @@ const FormikNewUser = withFormik({
       .string()
       .min(6, "Password must have at least 6 characters.")
       .required("Required field."),
-    phone: yup
+    phone_number: yup
       .number()
       .min(8, "Please enter your phone number here.")
       .required("Required field.")
-  })
-  // handleSubmit(values, { setStatus, resetForm }) {
-  //   axios
-  //     .post("https://water-my-plants-2.herokuapp.com/api/auth", values)
-  //     .then((response) => {
-  //       setStatus(response.data);
-  //       resetForm();
-  //       console.log(response);
-  //     })
-  //     .catch((error) => console.log(error.response));
-  // }
+  }),
+  handleSubmit(values, { setStatus, resetForm }) {
+    axios
+      .post("https://water-my-plants-2.herokuapp.com/api/auth/register", values)
+      .then((response) => {
+        setStatus(response.data);
+        resetForm();
+        console.log(response);
+      })
+      .catch((error) => console.log(error.response));
+  }
 })(NewUser);
 export default FormikNewUser;

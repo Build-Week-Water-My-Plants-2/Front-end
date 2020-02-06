@@ -17,9 +17,9 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 1000,
-    marginTop: "1%",
+    marginTop: "4%",
     marginBottom: "20px",
-    backgroundColor: "rgba(211, 211, 211, 0.727)"
+    backgroundColor: "rgba(119, 136, 153, 0.784)"
   },
   media: {
     height: 0,
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(180deg)"
   },
   avatar: {
-    backgroundColor: "green"
+    backgroundColor: "rgb(41, 80, 41)"
   }
 }));
 
@@ -61,51 +61,62 @@ function Plants() {
 
   return (
     <>
-      <div className="header">
-        {/* <h1 className="plant-header"> Your plants: </h1> */}
-      </div>
-      <div className="plant-page">
-        {plants.map((item) => {
-          return (
-            <Card key={item.id} className={classes.root}>
-              <CardHeader
-                avatar={
-                  <Avatar aria-label="recipe" className={classes.avatar}>
-                    P
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title={item.species}
-                subheader={item.nickname}
-              />
-              <CardMedia
-                className={classes.media}
-                image={item.image_url}
-                title="Your Plant"
-              />
-              <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Water Schedule: {item.water_schedule}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Last Watered: {item.last_watered}
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <Button size="small" color="primary">
-                  Delete
-                </Button>
-                <Button size="small" color="primary">
-                  Edit
-                </Button>
-              </CardActions>
-            </Card>
-          );
-        })}
+      <div className="plant-container">
+        <div className="header">
+          <h1 className="plant-header"> Your plants </h1>
+        </div>
+
+        <div className="plant-page">
+          {plants.map((item) => {
+            return (
+              <Card key={item.id} className={classes.root}>
+                <CardHeader
+                  avatar={
+                    <Avatar aria-label="recipe" className={classes.avatar}>
+                      P
+                    </Avatar>
+                  }
+                  action={
+                    <IconButton aria-label="settings">
+                      <MoreVertIcon />
+                    </IconButton>
+                  }
+                  title={item.species}
+                  subheader={item.nickname}
+                />
+                <CardMedia
+                  className={classes.media}
+                  image={item.image_url}
+                  title="Your Plant"
+                />
+                <CardContent>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    Water Schedule: {item.water_schedule}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    Last Watered: {item.last_watered}
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <Button size="small" color="inherit">
+                    Delete
+                  </Button>
+                  <Button size="small" color="inherit">
+                    Edit
+                  </Button>
+                </CardActions>
+              </Card>
+            );
+          })}
+        </div>
       </div>
     </>
   );

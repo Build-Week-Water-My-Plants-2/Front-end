@@ -25,6 +25,9 @@ import {
 } from "./LoginStyles";
 import { withRouter } from "react-router-dom";
 
+// ----------------------End Imports----------------------- //
+
+//--Styling function for error messages--//
 function getStyles(errors, fieldName) {
   if (getIn(errors, fieldName)) {
     return {
@@ -32,6 +35,8 @@ function getStyles(errors, fieldName) {
     };
   }
 }
+
+//--Component--//
 
 function LoginForm({ values, errors, touched, isSubmitting }) {
   const [toggleShow, setToggleShow] = useState(values.password);
@@ -98,9 +103,11 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
   );
 }
 
+//--Formik HOC--//
+
 const FormikUserForm = withRouter(
   withFormik({
-    mapPropsToValues({ email, password, username }) {
+    mapPropsToValues({ password, username }) {
       return {
         username: username || "",
         password: password || ""
@@ -115,7 +122,7 @@ const FormikUserForm = withRouter(
         .min(7, "password must be at least 7 characters")
         .required("password required")
     }),
-    handleSubmit(values, { props, setStatus, resetForm, setSubmitting }) {
+    handleSubmit(values, { props, setStatus }) {
       console.log("submitting", values);
 
       axiosWithAuth()
