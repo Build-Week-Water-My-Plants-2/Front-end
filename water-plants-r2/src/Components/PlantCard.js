@@ -1,5 +1,5 @@
 import React from "react";
-import {axiosWithAuth} from "../Utilities-auth/Auth"
+import axiosWithAuth from "../Utilities-auth/Auth"
 import {useHistory} from "react-router-dom"
 import {
   Card,
@@ -37,7 +37,7 @@ const PlantCard = props => {
     axiosWithAuth()
     .delete(`/plants/${props.plants.id}`)
     .then(res => {
-      console.log("DELETED!", res);
+      console.log("DELETED!", res); // needs refresh to see visual deletion. 
       props.history.push("/plants")
     //   setPlants(props.plants.filter(plant => plant.id !== res.data))
     })

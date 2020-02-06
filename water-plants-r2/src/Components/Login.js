@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { axiosWithAuth } from "../Utilities-auth/Auth";
+import  axiosWithAuth  from "../Utilities-auth/Auth";
+// import {useHistory} from 'react-router-dom'
 
 class Login extends React.Component {
   state = {
@@ -34,6 +35,23 @@ class Login extends React.Component {
           console.log(res)
         localStorage.setItem("token", res.data.token);
          this.props.history.push("/plants");
+
+         let welcomeMessage = res.data.message;
+         axiosWithAuth().get("/users")
+          .then(res => {
+           let user = res.data.filter(user=>welcomeMessage.includes(user.username))
+           // setUserInfo(user[0].id);
+          //  this.props.setUserID(user[0].id);
+           console.log('login props', this.props);
+           this.props.history.push(`/users/${user[0].id}/plants`)
+           // console.log('user from login2', user[0].id);
+         })
+          .catch(err => console.log(err))
+
+
+
+
+
       })
       .catch(err => console.log(err));
   };

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const axiosWithAuth = () => {
+const axiosWithAuth = () => {
   return axios.create({
     // config object
     baseURL: 'https://water-my-plants-2.herokuapp.com/api', //waiting on endpoint from backend.
@@ -10,3 +10,4 @@ export const axiosWithAuth = () => {
     }
   });
 };
+export default axiosWithAuth;

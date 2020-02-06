@@ -1,63 +1,102 @@
-import React from "react";
-import {
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText
-} from "reactstrap";
-import { axiosWithAuth } from "../Utilities-auth/Auth";
-const PlantForm = () => {
+import React, { useState } from "react";
 
+import axiosWithAuth from "../Utilities-auth/Auth";
 
-  // updatePlant = e => {
-  //   // UPDATE AXIOS
-  //   e.preventDefault();
+// class updatePlantForm extends React.Component {
 
-  //   axiosWithAuth()
-  //     .put(`/plants/${props.plants.id}`)
-  //     .then(res => {
-  //       localStorage.setItem("token", res.data.);
-  //       this.props.history.push("/protected");
-  //     })
-  //     .catch(err => console.log(err));
-  // };
+//   state = {
+//     credentials: {
+//      nickname: '',
+//      species: '',
+//      water_schedule:'',
+//     }
+//   };
 
-  
-    return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label>Nickname: </label>
-          <input
-            type="text"
-            placeholder="plant name"
-            name="nickname"
-            value={newPlant.nickname}
-            onChange={handleChange}
-          />
-          <label>Plant Species: </label>
-          <input
-            type="text"
-            name="species"
-            placeholder="plant species"
-            value={newPlant.species}
-            onChange={handleChange}
-          />
-          <label>Watering Schedule: </label>
-          <input
-            type="text"
-            placeholder="enter watering days"
-            name="water_schedule"
-            value={newPlant.water_schedule}
-            onChange={handleChange}
-          />
+//   handleChange = e => {
 
-          <button type="submit">Update Movie Info</button>
-        </form>
-      </div>
-    );
+//       // [e.target.name] e.target.value
+
+//   };
+
+//   handleSubmit = e => {
+//     axiosWithAuth
+//       .put(`/users/1/plants`, edit)
+//       .then(res => {
+
+//       })
+//       .catch(err => console.log(err));
+//     e.preventDefault();
+//   };
+
+//   render(){
+
+//     return (
+//       <form onSubmit={handleSubmit}>
+//       <input name="nickname" value={edit.nickname} onChange={handleChange} />
+//       <input name="species" value={edit.species} onChange={handleChange} />
+//       <input name="watering" value={edit.watering} onChange={handleChange} />
+//       <button>Submit</button>
+//     </form>
+//   );
+// }
+// };
+
+const UpdatePlantForm = ({
+  history,
+  match: {
+    
+    params: { id }
   }
+}) => {
+  const [nickname, setNickname] = useState("");
+  const [species, setSpecies] = useState("");
+  const [waterSchedule, setWaterSchedule] = useState("");
 
-export default PlantForm;
+  const handleSubmit = e => {
+    console.log(id);
+    e.preventDefault();
+    console.log(nickname, species, waterSchedule, "HEEEEEY");
+    const newPlantData = {
+      nickname,
+      species,
+      water_schedule: waterSchedule
+    };
+    axiosWithAuth()
+      .put(`/plants/${id}`, newPlantData)
+      .then(res => {
+        console.log(res);
+       history.push("/users/1/plants")
+      })
+      .catch(err => console.log(err));
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          name="nickname"
+          value={nickname}
+          onChange={e => {
+            setNickname(e.target.value);
+          }}
+        />
+        <input
+          name="species"
+          value={species}
+          onChange={e => {
+            setSpecies(e.target.value);
+          }}
+        />
+        <input
+          name="watering"
+          value={waterSchedule}
+          onChange={e => {
+            setWaterSchedule(e.target.value);
+          }}
+        />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+};
+export default UpdatePlantForm;

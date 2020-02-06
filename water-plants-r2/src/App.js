@@ -1,44 +1,52 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {axiosWithAuth} from "./Utilities-auth/Auth"
 import logo from './logo.svg';
 import './App.css';
 import PrivateRoute from './Utilities-auth/PrivateRoute'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import Login2 from "./Components/Login2"
+import Login from "./Components/Login"
 import Register from "./Components/Register"
 import PlantPage from "./Components/PlantPage"
 import Plants from './Components/Plants';
 import PlantForm from './Components/PlantForm'
 import PlantCard from './Components/PlantCard'
+import UpdatePlantForm from './Components/UpdatePlantForm'
 // import updatePlantForm from './Components/updatePlantForm'
 function App() {
   
+  const [userID, setUserID] = useState('');
+ 
+  useEffect(()=>{
+    console.log('userID', userID)
+  }, [userID])
   
-
 
   return (
     <Router>
-      <div>
-          <Route path="/login" component={Login2} />
-
-      </div>
       <div className="App">
           <nav>
             <Link to="/login">Login </Link>
             <Link to="/register">SignUp</Link>
-            <Link to="/plantcard">Plants</Link>
-            <Link to="/plants"> My Plants</Link>
+            {/* <Link to="/plantcard">Plants</Link> */}
+            <Link to="/users/1/plants"> My Plants</Link>
             <Link to="/plantform">Add New Plant</Link>
           </nav>
+      
+      
+
         <Switch>
           <PrivateRoute exact path="/protected" component={PlantPage} />
-          <PrivateRoute exact path="/plants" component={Plants}/>
+          <PrivateRoute exact path="/users/:id/plants" component={Plants}/>
           <PrivateRoute exact path="/plantform" component={PlantForm}/>
           <PrivateRoute exact path="/plantcard" component={PlantCard}/>
+          <Route exact path="/update-plant/:id" component={UpdatePlantForm} />
           {/* <PrivateRoute exact path="/plantupdate" component={updatePlantForm} /> */}
           <Route path="/register" component={Register}/>
-          {/* <Route  component={Login} /> */}
+          <Route  component={Login} />
+          {/* <Route path="/login"  render={(props) => <Login {...props} setUserID={setUserID}  />}/> */}
+      
         </Switch>
+      
       </div>
     </Router>
 
