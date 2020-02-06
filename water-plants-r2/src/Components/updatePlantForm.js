@@ -44,7 +44,6 @@ import axiosWithAuth from "../Utilities-auth/Auth";
 const UpdatePlantForm = ({
   history,
   match: {
-    
     params: { id }
   }
 }) => {
@@ -65,7 +64,7 @@ const UpdatePlantForm = ({
       .put(`/plants/${id}`, newPlantData)
       .then(res => {
         console.log(res);
-       history.push("/users/1/plants")
+        history.push("/users/1/plants");
       })
       .catch(err => console.log(err));
   };

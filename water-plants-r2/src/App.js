@@ -12,6 +12,9 @@ import PlantForm from './Components/PlantForm'
 import PlantCard from './Components/PlantCard'
 import UpdatePlantForm from './Components/UpdatePlantForm'
 // import updatePlantForm from './Components/updatePlantForm'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSeedling } from "@fortawesome/free-solid-svg-icons";
+
 function App() {
   
   const [userID, setUserID] = useState('');
@@ -23,8 +26,11 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-          <nav>
+      <div className="App">  
+     
+          <nav className="navbar">
+           <FontAwesomeIcon icon={faSeedling} /> 
+          <h1>Planet Planners</h1>
             <Link to="/login">Login </Link>
             <Link to="/register">SignUp</Link>
             {/* <Link to="/plantcard">Plants</Link> */}

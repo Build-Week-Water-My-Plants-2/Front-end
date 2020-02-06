@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../Utilities-auth/context"
 import axiosWithAuth from "../Utilities-auth/Auth";
 
-const PlantForm = () => {
-  const userPlant = useContext(UserContext)
-  console.log(userPlant)
+const PlantForm = ({
+  history
+}) => {
+  const userPlant = useContext(UserContext);
+  console.log(userPlant);
   // console.log('from PlantForm',props.value)
   const [add, setAdd] = useState({
     nickname: "",
@@ -20,39 +22,28 @@ const PlantForm = () => {
     });
     console.log(add);
   };
-  
-  
-  
-  
+
   const addPlant = () => {
     axiosWithAuth()
-    .post(`/users/1/plants`, add)
-    .then(res => {
-      // console.log(res);
-      setAdd(res.data);
-      // this.props.history.push("/plants");
-    })
-    .catch(err => console.log(err));
+      .post(`/users/1/plants`, add)
+      .then(res => {
+        // console.log(res);
+        setAdd(res.data);
+        
+      })
+      .catch(err => console.log(err));
   };
+
   
-    // axiosWithAuth()
-    // .get(`/users/${props.id}/plants`)
-    // .then(res => {
-    //   props.setPlants(res.data);
-    //   console.log(res);
-    //   // localStorage.setItem("token", res.data.token);
-    // })
-    // .catch(err => console.log(err));
-  
+
   const handleSubmit = e => {
     e.preventDefault();
     addPlant(add);
-    // props.history.push("/plants")
+    history.push("/users/1/plants");
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      
       Nickname:{" "}
       <input name="nickname" value={add.nickname} onChange={handleChange} />
       Species:{" "}

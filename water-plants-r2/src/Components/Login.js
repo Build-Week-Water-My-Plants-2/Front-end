@@ -2,6 +2,27 @@ import React from "react";
 import axios from "axios";
 import  axiosWithAuth  from "../Utilities-auth/Auth";
 // import {useHistory} from 'react-router-dom'
+import "./Login.css"
+import {LogForm, 
+   UserForm, 
+   Input, 
+   Button,
+   IconDiv,
+   Title,
+   Title2,
+   Label,
+   EmailWrapper,
+   PasswordWrapper,
+   MemberLink,
+   Anchor} from "../styles/LoginStyles"
+   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+   import {
+    faSeedling,
+    faUser,
+    faUnlockAlt,
+    faEyeSlash
+  } from "@fortawesome/free-solid-svg-icons";
 
 class Login extends React.Component {
   state = {
@@ -59,26 +80,48 @@ class Login extends React.Component {
   render() {
     
     return (
-      <div>
-        <h1>Sign In</h1>
-        <form onSubmit={this.login}>
-          Username:{" "}
-          <input
+      
+      <UserForm className="form">
+      <IconDiv>
+        <FontAwesomeIcon icon={faSeedling}  className="main-icon" />
+      </IconDiv>
+        <Title>Sign In</Title>
+        <LogForm onSubmit={this.login}>
+         <Label htmlFor="username">UserName: </Label>
+         <EmailWrapper>
+         <FontAwesomeIcon icon={faUser}  />
+          <Input
+            id="username"
             type="text"
             name="username"
+            placeholder="Email..."
             value={this.state.credentials.username}
             onChange={this.handleChange} // <---- Handle function goes here//
           />
-          Password:{" "}
-          <input
+          </EmailWrapper>
+          <Label htmlFor="password">Password: </Label>
+         <PasswordWrapper>
+         <FontAwesomeIcon icon={faUnlockAlt} />
+          <Input
+            id="password"
             type="password"
             name="password"
+            placeholder="Password..."
             value={this.state.credentials.password}
             onChange={this.handleChange}
           />
-          <button>Log In</button>
-        </form>
-      </div>
+          </PasswordWrapper>
+          <Button>Log In</Button>
+
+        <MemberLink>
+          <Title2>Not a member?</Title2>
+          <Anchor to="/register">Sign up</Anchor>
+        </MemberLink>
+
+
+        </LogForm>
+      </UserForm>
+      
     );
   }
 }

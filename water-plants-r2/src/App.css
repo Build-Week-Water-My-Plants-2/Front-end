@@ -14,16 +14,17 @@ body {
 .App {
   display: flex;
   justify-content: center;
-  /* padding: 11%; */
+  
   align-items: center;
-  height: 100vh;
+  flex-direction: column; 
+  
 }
 .fa-seedling {
   font-size: 4rem;
-  color: green;
+  color: rgb(25, 95, 25);
   position: absolute;
-  top: 20%;
-  left: 6%;
+  top: 27%;
+  left: 4%; 
 }
 .fa-user,
 .fa-unlock-alt {
@@ -55,4 +56,29 @@ body {
   color: rgb(44, 179, 44);
   width: 5%;
   padding-right: 7%;
+}
+
+.navbar {
+  width: 96%;
+  margin-top: 2%; 
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgba(228, 225, 225, 0.76);
+  padding: 2.5% 0;
+  border-radius: 7px; 
+}
+.navbar a {
+  font-size: 2rem;
+  color: rgb(25, 95, 25);
+  font-weight: bold;
+}
+.navbar a:hover {
+  color: rgb(66, 39, 39);
+  text-decoration: none;
+}
+
+.navbar h1 {
+  font-size: 3rem; 
+  font-weight: 600; 
+  color: rgb(25, 95, 25);
 }

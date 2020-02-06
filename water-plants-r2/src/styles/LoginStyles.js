@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { Form, Field } from "formik";
 import { Link } from "react-router-dom";
-export const LogForm = styled(Form)`
+export const LogForm = styled.form`
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@ export const IconDiv = styled.div`
   top: -11%;
   background-color: rgba(255, 255, 255);
 `;
-export const Input = styled(Field)`
+export const Input = styled.input`
   padding: 4% 1%;
   padding-left: 17%;
   border-radius: 3px;
@@ -49,7 +49,7 @@ export const UserForm = styled.div`
   box-sizing: border-box;
   background-color: rgba(255, 255, 255);
   height: 465px;
-  padding: 5% 6%;
+  padding: 5% 5%;
   width: 35%;
   border-radius: 5px;
   display: flex;
@@ -57,7 +57,7 @@ export const UserForm = styled.div`
   justify-content: center;
   align-content: center;
   position: relative;
-  box-shadow: 0 0 1px 1px lightgray;
+  box-shadow: 5px 5px 5px 5px lightgray;
 `;
 export const Title = styled.h2`
   width: 100%;

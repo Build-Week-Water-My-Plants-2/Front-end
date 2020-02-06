@@ -33,6 +33,19 @@ const NewUser = ({ values, errors, touched, status }) => {
         }
     }, [user, status]);
 
+    const Register = () => {
+        
+    
+        axiosWithAuth()
+          .post("/auth/register", values )
+          .then(res => {
+              console.log(res)
+            localStorage.setItem("token", res.data.token);
+            // this.props.history.push("/protected");
+          })
+          .catch(err => console.log(err));
+      }
+
     return (
         <div>
             <Form className='FormMASTER'>
@@ -91,18 +104,7 @@ const FormikNewUser = withFormik({
         // terms: yup.boolean().oneOf([true], "Must accept Terms of Service.").required()
     }),
 
-    Register = () => {
-        
-    
-        axiosWithAuth()
-          .post("/auth/register", values )
-          .then(res => {
-              console.log(res)
-            localStorage.setItem("token", res.data.token);
-            // this.props.history.push("/protected");
-          })
-          .catch(err => console.log(err));
-      }
+   
 
 })(NewUser)
 
