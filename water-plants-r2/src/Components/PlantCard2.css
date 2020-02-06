@@ -1,0 +1,13 @@
+.plant-page {
+  margin-top: 10%; 
+  display: flex; 
+  justify-content: space-evenly;
+  margin-left: 0; 
+  padding: 0; 
+}
+
+.plant-card {
+  width: 300px; 
+  box-shadow: 40px 40px 40px green; 
+}
+

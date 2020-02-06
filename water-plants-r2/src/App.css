@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+/* #root,
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 62.5;
+  line-height: 1;
+} */
+/* .App {
+  max-width: 100%; 
+  display: flex;
+  justify-content: space-between;
+  
+  align-items: center;
+  flex-direction: column; 
+  
+} */
+/* .fa-seedling {
+  font-size: 4rem;
+  color: rgb(25, 95, 25);
+  position: absolute;
+  top: 27%;
+  left: 4%; 
+}
+.fa-user,
+.fa-unlock-alt, .fa-phone, .fa-envelope-square {
+  position: absolute;
+  color: green;
+  font-size: 2rem;
+  top: 10%;
+  left: 4%;
+  z-index: 2;
+  border-right: 1px solid lightgray;
+  padding-right: 4%;
+} */
+.fa-eye-slash {
+  position: absolute;
+  color: green;
+  font-size: 1rem;
+  top: 29%;
+  right: 10%;
+}
+
+
+.navbar {
+  width: 96%;
+  margin-top: 2%; 
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgba(228, 225, 225, 0.76);
+  padding: 2.5% 0;
+  border-radius: 7px; 
+}
+.navbar a {
+  font-size: 2rem;
+  color: rgb(25, 95, 25);
+  font-weight: bold;
+}
+.navbar a:hover {
+  color: rgb(66, 39, 39);
+  text-decoration: none;
+}
+
+.navbar h1 {
+  font-size: 3rem; 
+  font-weight: 600; 
+  color: rgb(25, 95, 25);
+}
