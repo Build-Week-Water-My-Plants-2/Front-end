@@ -43,7 +43,7 @@ function App() {
         <Switch>
           <PrivateRoute exact path="/protected" component={PlantPage} />
           <PrivateRoute exact path="/users/:id/plants" component={Plants}/>
-          <PrivateRoute exact path="/plantform" component={PlantForm}/>
+          <Route exact path="/plantform" component={PlantForm}/>
           <PrivateRoute exact path="/plantcard" component={PlantCard}/>
           <Route exact path="/update-plant/:id" component={UpdatePlantForm} />
           {/* <PrivateRoute exact path="/plantupdate" component={updatePlantForm} /> */}

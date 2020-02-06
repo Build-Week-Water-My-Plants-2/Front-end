@@ -1,9 +1,29 @@
 .form {
-  margin-top: 10%; 
+  margin:  10% auto; 
+  
 }
 
 .main-icon {
   position: absolute; 
   left: 16%; 
   top: 20%; 
+}
+
+.fa-seedling {
+  font-size: 4rem;
+  color: rgb(25, 95, 25);
+  position: absolute;
+  top: 27%;
+  left: 4%; 
+}
+.fa-user,
+.fa-unlock-alt {
+  position: absolute;
+  color: green;
+  font-size: 2rem;
+  top: 10%;
+  left: 4%;
+  z-index: 2;
+  border-right: 1px solid lightgray;
+  padding-right: 4%;
 }

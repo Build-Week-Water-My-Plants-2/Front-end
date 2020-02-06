@@ -14,32 +14,12 @@ import {
 
 const PlantCard = props => {
   console.log(props);
-
-  // const saveEdit = e => {
-  //   e.preventDefault();
-  //   axiosWithAuth()
-  //   .put(`/colors/${colorToEdit.id}`, editColor)
-  //   .then(res => {
-  //     console.log("we got the color, lets change it!",  res);
-  //     updateColors(colors.map(color => (color.id === colorToEdit.id ? res.data : color))
-  //      )
-  //      setEditing(false)     
-  //   })
-  //   .catch(err => {
-  //     console.log("Err");
-  //   });
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
-  //};
-
   const deletePlant = () => {
     axiosWithAuth()
     .delete(`/plants/${props.plants.id}`)
     .then(res => {
-      console.log("DELETED!", res); // needs refresh to see visual deletion. 
+      console.log("DELETED!", res); 
       props.history.push("/plants")
-    //   setPlants(props.plants.filter(plant => plant.id !== res.data))
     })
     .catch(err => {
      console.log("Delete Spell Missed!", err);

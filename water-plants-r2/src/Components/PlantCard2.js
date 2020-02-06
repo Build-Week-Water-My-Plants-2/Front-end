@@ -1,7 +1,6 @@
 import React from "react";
 import axiosWithAuth from "../Utilities-auth/Auth";
 import { makeStyles } from "@material-ui/core/styles";
-// import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -12,14 +11,19 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import "./PlantCard2.css";
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 1000,
+    maxWidth: 500,
     marginBottom: "20px",
+    marginRight: '25%',
     backgroundColor: "rgba(211, 211, 211, 0.727)"
   },
   media: {
-    height: 0,
+    height: "50px",
+    width: "140px",
+    marginLeft: '25%',
+    
     paddingTop: "56.25%",
     backgroundColor: "white"
   },
@@ -44,18 +48,13 @@ function PlantCard2(props) {
     axiosWithAuth()
     .delete(`/plants/${props.plants.id}`)
     .then(res => {
-      console.log("DELETED!", res); // needs refresh to see visual deletion. 
-      // props.history.push("/plants")
-    //   setPlants(props.plants.filter(plant => plant.id !== res.data))
+      console.log("DELETED!", res); 
 
-
-    //maybe switch props with useContext pass down id and setPlants
     axiosWithAuth()
     .get(`/users/${props.id}/plants`)
     .then(res => {
       props.setPlants(res.data);
       console.log(res);
-      // localStorage.setItem("token", res.data.token);
     })
     .catch(err => console.log(err));
 
@@ -71,13 +70,12 @@ function PlantCard2(props) {
   const classes = useStyles();
   
   return (
-    <>
-      <div className="header">
-        {/* <h1 className="plant-header"> Your plants: </h1> */}
-      </div>
+   
+    <div className="plant-container" >
+     
       <div className="plant-page">
         {/* {plants.map((item) => { */}
-        <Card key={props.plants.id} className={classes.root}>
+        <Card key={props.plants.id} className={classes.root} className="plant-card" style={{backgroundColor: 'lightblue'}}>
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" className={classes.avatar}>
@@ -106,16 +104,17 @@ function PlantCard2(props) {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <Button onClick={deletePlant} size="small" color="primary">
+            <Button onClick={deletePlant} size="small" color="inherit">
               Delete
             </Button>
-            <Button href={`/update-plant/${props.plants.id}`} size="small" color="primary">
+            <Button href={`/update-plant/${props.plants.id}`} size="small" color="inherit">
               Edit
             </Button>
           </CardActions>
         </Card>
       </div>
-    </>
+      </div>
+   
   );
 }
 export default PlantCard2;

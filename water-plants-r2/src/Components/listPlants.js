@@ -1,5 +1,5 @@
  import React, { useContext } from "react";
-  import {PlantContext} from "../Utilities-auth/context";
+ import {PlantContext} from "../Utilities-auth/context";
  import PlantCard2 from "./PlantCard2";
 
 
@@ -14,16 +14,3 @@
 };
 
  export default ListPlants;
-// import React, { useContext } from "react";
-// // Components
-
-// const ListPlants = () => {
-//     const  {plants}  = useContext(PlantContext);
-//     console.log({plants})
-//     return (
-//       <div className="products-container">
-        
-//       </div>
-//     );
-// };
-// export default ListPlants;

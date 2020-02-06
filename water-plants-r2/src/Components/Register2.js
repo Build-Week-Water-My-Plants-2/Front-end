@@ -92,7 +92,6 @@ const FormikNewUser = withFormik({
             email: email || "",
             password: password || "",
             phone_number: phone || "",
-            // terms: terms || false
         };
     },
 
@@ -101,7 +100,6 @@ const FormikNewUser = withFormik({
         email: yup.string().email("Email not valid.").required("Required field."),
         password: yup.string().min(6, "Password must have at least 6 characters.").required("Required field."),
         phone_number: yup.string().min( "Please enter your phone number here.").required("Required field."),
-        // terms: yup.boolean().oneOf([true], "Must accept Terms of Service.").required()
     }),
 
    

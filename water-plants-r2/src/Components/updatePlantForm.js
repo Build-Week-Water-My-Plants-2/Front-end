@@ -1,48 +1,20 @@
 import React, { useState } from "react";
-
 import axiosWithAuth from "../Utilities-auth/Auth";
+import {LogForm, 
+  UserForm, 
+  Input, 
+  Button,
+  IconDiv,
+  Title,
+  Title2,
+  Label,
+  EmailWrapper,
+  PasswordWrapper,
+  MemberLink,
+  Anchor} from "../styles/LoginStyles";
+ import "./UpdatePlant.css"
 
-// class updatePlantForm extends React.Component {
-
-//   state = {
-//     credentials: {
-//      nickname: '',
-//      species: '',
-//      water_schedule:'',
-//     }
-//   };
-
-//   handleChange = e => {
-
-//       // [e.target.name] e.target.value
-
-//   };
-
-//   handleSubmit = e => {
-//     axiosWithAuth
-//       .put(`/users/1/plants`, edit)
-//       .then(res => {
-
-//       })
-//       .catch(err => console.log(err));
-//     e.preventDefault();
-//   };
-
-//   render(){
-
-//     return (
-//       <form onSubmit={handleSubmit}>
-//       <input name="nickname" value={edit.nickname} onChange={handleChange} />
-//       <input name="species" value={edit.species} onChange={handleChange} />
-//       <input name="watering" value={edit.watering} onChange={handleChange} />
-//       <button>Submit</button>
-//     </form>
-//   );
-// }
-// };
-
-const UpdatePlantForm = ({
-  history,
+const UpdatePlantForm = ({  history,
   match: {
     params: { id }
   }
@@ -70,32 +42,45 @@ const UpdatePlantForm = ({
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
+    <UserForm className="update">
+    <Title>Update Plant</Title>
+      <LogForm onSubmit={handleSubmit}>
+      <Label htmlFor="nickname" >Nickname: </Label>
+      <EmailWrapper>
+       <Input
+          id="nickname"
           name="nickname"
           value={nickname}
           onChange={e => {
             setNickname(e.target.value);
           }}
         />
-        <input
+        </EmailWrapper>
+        <Label htmlFor="species">Species: </Label>
+        <EmailWrapper>
+        <Input
+          id="species"
           name="species"
           value={species}
           onChange={e => {
             setSpecies(e.target.value);
           }}
         />
-        <input
+        </EmailWrapper>
+        <Label htmlFor="watering" >Watering Schedule: YYYY-MM-DD HH:MM </Label>
+        <EmailWrapper>
+        <Input
+          id="watering"
           name="watering"
           value={waterSchedule}
           onChange={e => {
             setWaterSchedule(e.target.value);
           }}
         />
-        <button>Submit</button>
-      </form>
-    </div>
-  );
+        </EmailWrapper>
+        <Button>Submit</Button>
+      </LogForm>
+    </UserForm>
+  )
 };
 export default UpdatePlantForm;

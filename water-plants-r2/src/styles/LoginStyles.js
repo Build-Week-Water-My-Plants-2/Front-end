@@ -13,7 +13,7 @@ export const IconDiv = styled.div`
   border: 3px solid darkgreen;
   position: absolute;
   top: -11%;
-  background-color: rgba(255, 255, 255);
+  background-color: lightblue;
 `;
 export const Input = styled.input`
   padding: 4% 1%;
@@ -48,7 +48,7 @@ export const Button = styled.button`
 export const UserForm = styled.div`
   box-sizing: border-box;
   background-color: rgba(255, 255, 255);
-  height: 465px;
+  height: 500px;
    padding: 6% 5%;
   width: 35%;
   border-radius: 5px;
@@ -103,7 +103,7 @@ export const RegForm = styled.div`
   box-sizing: border-box;
   background-color: rgba(255, 255, 255);
   height: 665px;
-   padding: 4% 5%;
+  padding: 4% 5%;
   width: 35%;
   border-radius: 5px;
   display: flex;
@@ -112,4 +112,14 @@ export const RegForm = styled.div`
   align-content: center;
   position: relative;
   box-shadow: 5px 5px 5px 5px lightgray;
+`;
+
+export const RegIconDiv = styled.div`
+  border-radius: 50%;
+  width: 15%;
+  height: 100px;
+  border: 3px solid darkgreen;
+  position: absolute;
+  top: -8%;
+  background-color: lightblue;
 `;

@@ -1,22 +1,16 @@
  import React from "react";
-
  import  axiosWithAuth  from "../Utilities-auth/Auth";
-
  import "./Register.css"
-
  import {
     LogForm,
     Input,
     Button,
-    IconDiv,
+    RegIconDiv,
     RegForm,
     Title,
-    Title2,
     Label,
     EmailWrapper,
     PasswordWrapper,
-    MemberLink,
-    Anchor
   } from "../styles/LoginStyles";
 
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -39,7 +33,6 @@ import {
      }
    };
    handleChange = e => {
-     // <---- handle change function
      this.setState({
        newUser: {
          ...this.state.newUser,
@@ -54,7 +47,6 @@ import {
        .post("/auth/register", this.state.newUser)
        .then(res => {
          localStorage.setItem("token", res.data.token);
-         // this.props.history.push("/protected");
        })
        .catch(err => console.log(err));
    };
@@ -62,10 +54,10 @@ import {
    render() {
      return (
        <RegForm className="reg-form">
-       <IconDiv>
+       <RegIconDiv>
          <FontAwesomeIcon icon={faSeedling} classname="register-icon" />
-       </IconDiv>
-         <Title>Creat Account</Title>
+       </RegIconDiv>
+         <Title>Create Account</Title>
          <LogForm onSubmit={this.Register} className="reg">
            <Label htmlFor="username">UserName: </Label>
            <EmailWrapper>

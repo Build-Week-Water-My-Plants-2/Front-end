@@ -16,7 +16,6 @@ const Plants = (props) => {
       .then(res => {
         setPlants(res.data);
         console.log(res);
-        // localStorage.setItem("token", res.data.token);
       })
       .catch(err => console.log(err));
   }, []);
@@ -38,14 +37,7 @@ const Plants = (props) => {
     <div>
       <PlantContext.Provider value={plants}>
         <ListPlants setPlants={setPlants} id={id} history={props.history}/>
-        
       </PlantContext.Provider>
-    </div>
-    <div>
-       <UserContext.Provider value={users}>
-        <PlantForm />
-        
-      </UserContext.Provider>
     </div>
     </>
   );
