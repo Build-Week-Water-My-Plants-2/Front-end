@@ -2,6 +2,33 @@
 
  import  axiosWithAuth  from "../Utilities-auth/Auth";
 
+ import "./Register.css"
+
+ import {
+    LogForm,
+    Input,
+    Button,
+    IconDiv,
+    RegForm,
+    Title,
+    Title2,
+    Label,
+    EmailWrapper,
+    PasswordWrapper,
+    MemberLink,
+    Anchor
+  } from "../styles/LoginStyles";
+
+  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSeedling,
+  faUser,
+  faUnlockAlt,
+  faPhone,
+  faEnvelopeSquare,
+  faEyeSlash
+} from "@fortawesome/free-solid-svg-icons";
+
  class Register extends React.Component {
    state = {
      newUser: {
@@ -34,40 +61,60 @@
 
    render() {
      return (
-       <div>
-         <h1>Creat Account</h1>
-         <form onSubmit={this.Register}>
-           Username:
-           <input
+       <RegForm className="reg-form">
+       <IconDiv>
+         <FontAwesomeIcon icon={faSeedling} classname="register-icon" />
+       </IconDiv>
+         <Title>Creat Account</Title>
+         <LogForm onSubmit={this.Register} className="reg">
+           <Label htmlFor="username">UserName: </Label>
+           <EmailWrapper>
+           <FontAwesomeIcon icon={faUser} />
+           <Input
+              id="username"
              type="text"
              name="username"
+             placeholder="Username"
             value={this.state.newUser.username}
              onChange={this.handleChange}
            />
-           Password:
-           <input
+           </EmailWrapper>
+           <Label htmlFor='password'>Password: </Label>
+          <PasswordWrapper>
+          <FontAwesomeIcon icon={faUnlockAlt} />
+           <Input
              type="password"
              name="password"
+             placeholder="Password"
              value={this.state.newUser.password}
              onChange={this.handleChange}
            />
-           Email:
-           <input
+        </PasswordWrapper>
+
+        <Label htmlFor="email">Email: </Label>
+        <EmailWrapper>
+           <FontAwesomeIcon icon={faEnvelopeSquare} />
+           <Input
+             id="email"
              type="text"
              name="email"
              value={this.state.newUser.email}
              onChange={this.handleChange}
            />
-           Phone Number:
-           <input
+           </EmailWrapper>
+           <Label htmlFor="phone_number">Phone Number: </Label>
+           <EmailWrapper>
+           <FontAwesomeIcon icon={faPhone} />
+           <Input
              type="text"
              name="phone_number"
              value={this.state.newUser.phone_number}
              onChange={this.handleChange}
            />
-           <button>Register</button>
-         </form>
-       </div>
+           </EmailWrapper>
+           <Button>Register</Button>
+         </LogForm>
+       </RegForm>
      );
    }
  }

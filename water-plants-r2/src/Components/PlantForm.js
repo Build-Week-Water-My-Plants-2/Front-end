@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../Utilities-auth/context"
 import axiosWithAuth from "../Utilities-auth/Auth";
 
-const PlantForm = ({
-  history
-}) => {
+const PlantForm = (
+  props
+) => {
+  console.log(props, "LINE 9")
   const userPlant = useContext(UserContext);
   console.log(userPlant);
   // console.log('from PlantForm',props.value)
@@ -39,7 +40,7 @@ const PlantForm = ({
   const handleSubmit = e => {
     e.preventDefault();
     addPlant(add);
-    history.push("/users/1/plants");
+    // history.push("/users/1/plants");
   };
 
   return (

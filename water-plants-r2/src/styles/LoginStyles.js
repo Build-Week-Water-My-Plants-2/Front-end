@@ -49,7 +49,7 @@ export const UserForm = styled.div`
   box-sizing: border-box;
   background-color: rgba(255, 255, 255);
   height: 465px;
-  padding: 5% 5%;
+   padding: 6% 5%;
   width: 35%;
   border-radius: 5px;
   display: flex;
@@ -97,4 +97,19 @@ export const Anchor = styled(Link)`
   text-decoration: none;
   font-size: 0.9rem;
   color: green;
+`;
+
+export const RegForm = styled.div`
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255);
+  height: 665px;
+   padding: 4% 5%;
+  width: 35%;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  box-shadow: 5px 5px 5px 5px lightgray;
 `;

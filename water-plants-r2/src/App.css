@@ -27,7 +27,7 @@ body {
   left: 4%; 
 }
 .fa-user,
-.fa-unlock-alt {
+.fa-unlock-alt, .fa-phone, .fa-envelope-square {
   position: absolute;
   color: green;
   font-size: 2rem;
